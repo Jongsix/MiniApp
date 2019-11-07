@@ -1,0 +1,62 @@
+WindowsBalloon = require('node-notifier').WindowsBalloon;
+
+notifier = new WindowsBalloon({
+  withFallback: false, // Try Windows Toast and Growl first?
+  customPath: undefined // Relative/Absolute path if you want to use your fork of notifu
+});
+
+notifier.notify(
+  {
+    appName: "ipcc.notifier", 
+    title: '테스트메시지',
+    message: "전화번호:000-0000-0000",
+    sound: true, // true | false.
+    time: 5000, // How long to show balloon in ms
+    //wait: false, // Wait for User Action against Notification
+    wait: true,
+    type: 'info' // The notification type : info | warn | error
+  },
+  function(error, response) {
+    console.log(response);
+  }
+);
+
+
+===========================================
+WindowsToaster = require('node-notifier').WindowsToaster;
+
+var notifier = new WindowsToaster({
+  withFallback: false // Fallback to Growl or Balloons?
+});
+
+notifier.notify(
+  {
+    title: 'AAAAAAAAAAAAA', // String. Required
+    message: 'BBBBBBBB', // String. Required if remove is not defined
+    icon: 'Statera_favicon.png' // String. Absolute path to Icon
+//    sound: false, // Bool | String (as defined by http://msdn.microsoft.com/en-us/library/windows/apps/hh761492.aspx)
+//    id: undefined, // Number. ID to use for closing notification.
+
+  },
+  function(error, response) {
+    console.log(response);
+  }
+);
+
+===========================================
+
+NotifySend = require('node-notifier').NotifySend;
+
+var notifier = new NotifySend();
+
+notifier.notify({
+  title: 'Foo',
+  message: 'Hello World',
+  icon: __dirname + '/Statera_favicon.png'
+});
+===========================================
+
+var img = '/to-do-notifications/img/icon-128.png';
+var text = 'HEY! Your task  is now overdue.';
+var notification = new Notification('To do list', { body: text, icon: img });
+
