@@ -1,0 +1,18 @@
+{
+  hostXX: '192.168.10.98',
+  host: '58.120.30.222',
+  port: 3000,
+  width: 500,
+  height: 800,
+  develop: true,
+  devWidth: 500,
+  devHeight: 800,
+  index: 'index.html',
+  params: {
+    userid: '8552',
+    passwd: '8552',
+    phone: '8552',
+    callPopupUrlBase: '',
+    autoAnswer: true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "StarteraMiniApp",
+  "version": "1.0.0",
+  "description": "Startera Mini App",
+  "main": "./app/main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager ./ StarteraMiniApp --all --out ./dist --overwrite",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "build --dir",
+    "dist": "build --win --x64 --ia32"
+  },
+  "author": "TBD",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "csv-parse": "^4.6.5",
+    "dialogs": "^2.0.1",
+    "electron-context-menu": "^0.15.0",
+    "electron-dialog": "^2.0.0",
+    "electron-is-running-in-asar": "^1.0.0",
+    "electron-log": "^3.0.8",
+    "electron-notification": "^1.0.0",
+    "electron-prompt": "^1.4.0",
+    "electron-window-state": "^5.0.3",
+    "faye-websocket": "^0.11.3",
+    "json5": "^2.1.1",
+    "moment": "^2.24.0",
+    "node-notifier": "^6.0.0",
+    "request": "^2.88.0",
+    "shell-path": "^2.1.0"
+  },
+  "devDependencies": {
+    "electron": "^7.0.0",
+    "electron-builder": "^21.2.0",
+    "electron-packager": "^14.0.6",
+    "electron-prebuilt": "^1.4.13",
+    "electron-winstaller": "^4.0.0"
+  },
+  "build": {
+    "appId": "startera.mini.app",
+    "win": {
+      "icon": "Startera256.ico",
+      "extraResources": [
+        "config/config.json",
+        "config/iepopup.js"
+      ]
+    }
+  }
+}

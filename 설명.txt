@@ -1,0 +1,136 @@
+rmdir C:\Users\jongsix\AppData\Roaming\npm
+rmdir C:\Users\jongsix\AppData\Roaming\npm-cache
+rmdir C:\Work\electron-softphone\node_modules
+del C:\Work\electron-softphone\package-lock.json
+
+npm install -g npm-check-updates
+npm-check-updates
+npm-check-updates -u
+rm -rf node_modules
+npm install
+rm npm-shrinkwrap.json
+npm shrinkwrap
+
+
+  npm install -g electron
+  npm install -g electron-packager
+
+# npm install -g electron-forge
+
+<<테스트 실행>>
+
+  /*
+  .\app\main-dev.js 파일을 .\app\main.js 로 복사해 놓고
+  npm start
+  */
+
+  electron app\main-dev.js
+
+<<설치파일생성>>
+
+  .\app\main-dist.js 파일을 .\app\main.js 로 복사해 놓고
+
+//  npm run dist
+
+
+  npm run package # <---- use this
+
+  
+  ..실행하고나면 dist 폴더에 생성됨.
+  
+  주의:: 한글폴더 밑데 두면 에러남!!!!!
+
+  (또는..)
+
+
+
+//  electron-packager ./ TeleStarApp --all --out ./dist --overwrite
+//
+//  electron-packager . TeleStarApp --platform win32 --arch x64 --arch ia32 --out dist/
+//
+//  electron-packager . app --platform win32 --arch x86 --out dist/
+
+<<npm업데이트>>
+
+#  npm install -g npm-check
+#  npm-check -u
+
+   npm install --save-dev electron@latest
+   npm install -g electron@latest
+  
+   이후..
+   new BrowserWindow({
+     ...
+     webPreferences:{
+       nodeIntegration: true // default: false 임!!
+     },
+     ...
+   });
+   
+<< 애플리케이션 업데이트>>
+   https://electronjs.org/docs/tutorial/updates
+   
+==============================================================================================
+
+  참고 npm : https://www.npmjs.com/search?q=keywords%3Aelectron&ranking=popularity
+  
+     다이얼로그: https://electronjs.org/docs/api/dialog
+              https://www.scriptol.com/javascript/electron-prompt.php
+     
+     ** isomorphic dialogs: https://github.com/fabiospampinato/electron-dialog  ==> alert/confirm/choice
+     
+     탭: https://www.npmjs.com/package/electron-tabs
+     
+     모달: https://www.npmjs.com/package/electron-modal
+     
+     non-blocking confirm,alert,prompt: https://www.npmjs.com/package/dialogs  (GOOD!!!)
+     
+     싱글인스턴스: https://github.com/republicwireless-open/electron-single-instance
+
+     뺏지: https://www.npmjs.com/package/electron-windows-badge 
+     
+     익스프레스통합: https://github.com/theallmightyjohnmanning/electron-express
+     
+     로그파일(with rotation): electron-log
+     
+     Debugger UI for the main Electron process: https://www.npmjs.com/package/electron-inspector
+     
+     create-electron-react-app : https://www.npmjs.com/package/create-electron-react-app
+     
+     web2desktop : https://github.com/anshumanv/web2desktop 
+     
+     electron-tray-window : 트레이아이콘: https://www.npmjs.com/package/electron-tray-window
+     
+     ** electron-react-boilerplate: https://github.com/electron-react-boilerplate/electron-react-boilerplate
+     
+     * electron-root-path: https://www.npmjs.com/package/electron-root-path
+      
+=======================================================================================================
+
+** iframe 에서 메시지보내기
+
+  << 메인 >>
+
+    window.addEventListener("message", function(event) {
+        console.log("message",event.data);
+    });
+
+  << iframe 에서 >>
+
+    parent.postMessage({message:"child frame",arg:1}, "*");
+
+    parent.postMessage({typ:"popup",tgt:tgt,url:url}, "*");
+
+
+=======================
+듀오 팝업
+
+showInboundCall()
+
+ popup('_blank',"http://wms.duonet.com/consulting/info_only/default.asp?dist=1&userid=1111&cid=2222");
+
+
+function popup(tgt,url){
+  let tt = utrl || "http://wms.duonet.com/consulting/info_only/default.asp?dist=1&userid=1111&cid=2222";  
+  electron.ipcRenderer.send('popupChrome', tt,{width:800,height:600,left:window.screenLeft,top:window.screenTop,alwaysOnTop:true,autoHideMenuBar:true});
+}
