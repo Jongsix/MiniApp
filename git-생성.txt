@@ -19,8 +19,8 @@
   cd C:\Work\ilshin\MiniApp
   
   git init
-  git config --global user.email "kevinkjs@gmail.com"
-  git config --global user.name "Kevin Kim"
+  git config --global user.email "kkkk@gmail.com"
+  git config --global user.name "kkkk Kim"
   git remote add origin https://github.com/Jongsix/MiniApp.git
 
 (4) git 업로드.
