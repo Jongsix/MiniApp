@@ -1,0 +1,31 @@
+(1) github 에서..
+  https://github.com/Jongsix
+  "MiniApp" repository 생성 (readme 없이)
+
+
+(2) .gitignore 파일생성.
+
+  cd C:\Work\ilshin\MiniApp
+  
+  edit .gitignore
+    dist/
+    node_modules/
+    *.log
+    yarn.lock
+    package-lock.json
+
+(3) git 초기화.
+ 
+  cd C:\Work\ilshin\MiniApp
+  
+  git init
+  git config --global user.email "kevinkjs@gmail.com"
+  git config --global user.name "Kevin Kim"
+  git remote add origin https://github.com/Jongsix/MiniApp.git
+
+(4) git 업로드.
+
+  git pull
+  git add .
+  git commit -m "first commit"
+  git push -u origin master
