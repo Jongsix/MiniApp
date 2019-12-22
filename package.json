@@ -7,8 +7,12 @@
     "start": "electron .",
     "package": "electron-packager ./ StarteraMiniApp --all --out ./dist --overwrite",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack": "build --dir",
-    "dist": "build --win --x64 --ia32"
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win --x64 --ia32",
+    "dist:x64": "electron-builder --win --x64",
+    "dist:x86": "electron-builder --win --ia32",
+    "dist:portable:x64": "electron-builder build --win portable --x64",
+    "dist:portable:x86": "electron-builder build --win portable --ia32"
   },
   "author": "TBD",
   "license": "UNLICENSED",

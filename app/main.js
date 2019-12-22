@@ -1,4 +1,4 @@
-const {app, BrowserWindow, ipcMain} = require('electron');
+const {app, BrowserWindow, ipcMain, Notification} = require('electron');
 const contextMenu = require('electron-context-menu');
 const configer = require('./lib/configer.js');
 const windowStateKeeper = require('electron-window-state');
@@ -11,7 +11,7 @@ var conf = null;
 //const conf = configer.load('./config/config.json',defaultConf);
 
 //log.info('process.env',process.env); 
-
+            
 contextMenu({
 	prepend: (defaultActions, params, browserWindow) => [{
 		label: 'Rainbow',
@@ -177,6 +177,7 @@ function createWindow () {
     app.quit();
   })
   app.mainWindow = mainWindow;
+  app.setAppUserModelId('startera.mini.app'); // for Notification
 }
 
 
@@ -266,4 +267,18 @@ ipcMain.on('popupCbakWin', function(event, url, args) {
 
 ipcMain.on('writePhonebook', function(event, url, args) {
   fs.writeFile(phoneBookFile, JSON.stringify(phoneBook,null,4));
+});
+
+/* example:
+let {ipcRenderer} = require('electron');
+ipcRenderer.send('notification', {
+  title: 'IPCC 노티피케이션3',
+  body: `010-2222-3333
+AAAA`
+});
+*/
+ipcMain.on('notification', function(event, conf) {
+  let myNotification = new Notification(conf);
+  myNotification.on('click', () => { console.log('Notification clicked'); }); 
+  myNotification.show();
 });
